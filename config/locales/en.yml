@@ -10,3 +10,6 @@ en:
       login: Login
       signup: Sign up
       sign_out: Sign out
+  posts:
+    post:
+      comments: Comments

@@ -1,0 +1,9 @@
+.container-fluid
+  .row
+    .col-md-6
+      = render partial: 'post', locals: { post: @post }
+  -# Comment area
+  .row
+    .col-md-6
+      .comments.box
+        = render partial: 'comments/comment', collection: @root_comments, as: :comment

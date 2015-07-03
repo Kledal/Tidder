@@ -1,13 +1,22 @@
 class PostsController < ApplicationController
+  before_filter :find_post, only: [:show, :upvote, :downvote]
 
-  before_filter :find_post, only: [:upvote, :downvote]
+  def show
+    @root_comments = @post.root_comments
+  end
+
+  def new
+
+  end
 
   def upvote
-    @post.upvote_by current_user
+    @post.upvote current_user
+    render partial: 'post', locals: { post: @post }, change: "posts:#{@post.id}"
   end
 
   def downvote
-    @post.downvote_from current_user
+    @post.downvote current_user
+    render partial: 'post', locals: { post: @post }, change: "posts:#{@post.id}"
   end
 
   private

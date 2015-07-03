@@ -1,4 +1,7 @@
 class PostPresenter < BasePresenter
+  def total_comments
+    @model.comment_threads.size
+  end
 
   def total_upvotes
     @model.get_upvotes.size

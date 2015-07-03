@@ -1,0 +1,12 @@
+- present(comment) do |comment|
+  .post-container.clearfix{id: "comments:#{comment.id}"}
+    .post-vote-buttons.pull-left
+      = link_to "#", remote: true, method: :put, class: "btn btn-default btn-xs" do
+        = fa_icon 'angle-up'
+      -# .score= post.score
+      .score 0
+      = link_to "#", remote: true, method: :put, class: "btn btn-default btn-xs" do
+        = fa_icon 'angle-down'
+
+    .post-content.pull-left
+      = comment.body

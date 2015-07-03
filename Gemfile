@@ -8,7 +8,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
-gem 'turbolinks'
+gem 'turbolinks', git: 'https://github.com/rails/turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
@@ -18,6 +18,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts_as_commentable_with_threading'
 
 gem 'devise'
 gem 'devise-bootstrap-views'
