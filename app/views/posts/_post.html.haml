@@ -1,0 +1,17 @@
+- present(post) do |post|
+  .post-container
+    %h2
+      =link_to post.title, post.link
+      %br
+      %small.author
+        Submitted by
+        = post.submitted_by
+    .btn-group.btn-group-sm{ role: 'group' }
+      = link_to upvote_post_path(post), remote: true, method: :put, class: 'btn btn-default' do
+        = fa_icon 'angle-up', text: "#{t('globals.upvote')} #{post.total_upvotes}"
+      = link_to downvote_post_path(post), remote: true, method: :put, class: 'btn btn-default' do
+        = fa_icon 'angle-down', text: "#{t('globals.downvote')} #{post.total_downvotes}"
+  -# .panel.panel-default
+  -#   .panel-heading
+  -#     .panel-title= post.title
+  -#   .panel-body

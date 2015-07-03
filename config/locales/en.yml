@@ -1,0 +1,12 @@
+en:
+  globals:
+    site_name: Tidder
+    upvote: Upvote
+    downvote: Downvote
+  layouts:
+    # Navbar
+    navbar:
+      frontpage: Frontpage
+      login: Login
+      signup: Sign up
+      sign_out: Sign out

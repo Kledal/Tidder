@@ -1,0 +1,13 @@
+/*
+ *= require devise_bootstrap_views
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+body {
+ background: #f1f1f1;
+}
