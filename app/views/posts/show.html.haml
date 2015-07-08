@@ -2,7 +2,10 @@
   .row
     .col-md-6
       = render partial: 'post', locals: { post: @post }
-  -# Comment area
+
+  - if user_signed_in?
+    = render partial: 'comments/form', locals: { comment: @new_comment }
+
   .row
     .col-md-6
       .comments.box

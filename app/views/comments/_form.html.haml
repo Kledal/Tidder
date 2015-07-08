@@ -1,0 +1,6 @@
+.row
+  .col-md-6
+    .new-comment.box
+      = simple_form_for [@post, comment] do |f|
+        = f.input :body, label: t('globals.comment')
+        = f.button :submit, class: "btn-success"

@@ -1,9 +1,12 @@
 class Post < ActiveRecord::Base
   acts_as_votable
   acts_as_commentable
-  belongs_to :user
 
-  validates :title, presence: true
+  belongs_to :user
+  belongs_to :subtidder
+  has_many :comments, as: :commentable
+
+  validates :title, :subtidder, presence: true
 
   def upvote(user)
     if user.downvoted?(self) || !user.has_voted(self)

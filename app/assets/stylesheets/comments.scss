@@ -1,3 +1,22 @@
 .comments {
   padding: 10px;
 }
+
+.new-comment {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.post-container .child {
+  border-left: 1px dotted black;
+}
+.comment-content {
+  .information {
+    font-size: 11px;
+  }
+  .bottom-information {
+    font-size: 11px;
+  }
+  .replies {
+    margin-left: -25px;
+  }
+}

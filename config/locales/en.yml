@@ -3,6 +3,8 @@ en:
     site_name: Tidder
     upvote: Upvote
     downvote: Downvote
+    comment: Comment
+    reply: reply
   layouts:
     # Navbar
     navbar:

@@ -4,13 +4,8 @@ class Comment < ActiveRecord::Base
   validates :body, :presence => true
   validates :user, :presence => true
 
-  # NOTE: install the acts_as_votable plugin if you
-  # want user to vote on the quality of comments.
-  #acts_as_votable
-
+  acts_as_votable
   belongs_to :commentable, :polymorphic => true
-
-  # NOTE: Comments belong to a user
   belongs_to :user
 
   # Helper class method that allows you to build a comment
@@ -44,5 +39,25 @@ class Comment < ActiveRecord::Base
   # given the commentable class name and id
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
+  end
+
+  def upvote(user)
+    if user.downvoted?(self) || !user.has_voted(self)
+      upvote_by(user)
+    else
+      unliked_by(user)
+    end
+  end
+
+  def downvote(user)
+    if user.upvoted?(self) || !user.has_voted(self)
+      downvote_from(user)
+    else
+      undisliked_by(user)
+    end
+  end
+
+  def score
+    get_upvotes.size - get_downvotes.size
   end
 end

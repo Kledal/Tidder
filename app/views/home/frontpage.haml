@@ -1,4 +1,5 @@
 .container-fluid
   .row
     .col-md-12
-      = render @top_posts
+      - cache do
+        = render @top_posts

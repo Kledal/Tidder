@@ -1,12 +1,23 @@
+- reply ||= false
 - present(comment) do |comment|
-  .post-container.clearfix{id: "comments:#{comment.id}"}
+  .post-container.clearfix{id: "comments:#{comment.id}", class: "#{reply.present? ? 'child' : ''}"}
     .post-vote-buttons.pull-left
-      = link_to "#", remote: true, method: :put, class: "btn btn-default btn-xs" do
+      = link_to upvote_comment_path(comment), remote: true, method: :put, class: "btn btn-default btn-xs" do
         = fa_icon 'angle-up'
-      -# .score= post.score
-      .score 0
-      = link_to "#", remote: true, method: :put, class: "btn btn-default btn-xs" do
+      = link_to downvote_comment_path(comment), remote: true, method: :put, class: "btn btn-default btn-xs" do
         = fa_icon 'angle-down'
 
-    .post-content.pull-left
+    .comment-content.post-content.pull-left
+      .information
+        = comment.submitted_by
+        %span.score
+          = comment.score
+          points
+        %span.time-since
+          = time_ago_in_words(comment.created_at)
       = comment.body
+      .bottom-information
+        = link_to new_comment_comment_path(comment) do
+          = t('globals.reply')
+      .replies
+        = render partial: 'comments/comment', collection: comment.children, as: :comment, locals: { reply: true }

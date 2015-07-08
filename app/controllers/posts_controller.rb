@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
   before_filter :find_post, only: [:show, :upvote, :downvote]
+  before_filter :auth, only: [:upvote, :downvote]
 
   def show
     @root_comments = @post.root_comments
+    @new_comment = Comment.new
   end
 
   def new
@@ -22,6 +24,6 @@ class PostsController < ApplicationController
   private
 
   def find_post
-    @post = Post.find(params[:id])
+    @post = Post.includes(:comments).find(params[:id])
   end
 end
