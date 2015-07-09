@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :comments
+  has_many :subscriptions
+  has_many :subtidders, through: :subscriptions
 
   def last_vote(post)
     voted_as_when_voted_for(post)

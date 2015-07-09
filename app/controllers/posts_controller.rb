@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def show
     @root_comments = @post.root_comments
     @new_comment = Comment.new
+    @url = new_subtidder_post_comment_path(@post.subtidder, @post)
   end
 
   def new

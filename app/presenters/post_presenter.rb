@@ -13,7 +13,13 @@ class PostPresenter < BasePresenter
 
   def link
     return @model.link if @model.link.present?
-    return @model
+    [@model.subtidder, @model]
+  end
+
+  def subtidder_name
+    return @model.link if @model.link.present?
+    link_str = "(#{I18n.t('globals.self')}.#{@model.subtidder.name})"
+    h.link_to link_str, @model.subtidder
   end
 
   def submitted_by

@@ -19,5 +19,7 @@
       .bottom-information
         = link_to new_comment_comment_path(comment) do
           = t('globals.reply')
+        - if comment.can_delete?(current_user)
+          = link_to "- #{t('globals.delete')}", comment_path(comment), remote: true, method: :delete
       .replies
         = render partial: 'comments/comment', collection: comment.children, as: :comment, locals: { reply: true }

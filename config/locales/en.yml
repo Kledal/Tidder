@@ -5,6 +5,8 @@ en:
     downvote: Downvote
     comment: Comment
     reply: reply
+    self: self
+    delete: delete
   layouts:
     # Navbar
     navbar:
@@ -15,3 +17,4 @@ en:
   posts:
     post:
       comments: Comments
+      comment: Comment

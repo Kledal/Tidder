@@ -41,6 +41,10 @@ class Comment < ActiveRecord::Base
     commentable_str.constantize.find(commentable_id)
   end
 
+  def can_delete?(user)
+    user == self.user
+  end
+
   def upvote(user)
     if user.downvoted?(self) || !user.has_voted(self)
       upvote_by(user)

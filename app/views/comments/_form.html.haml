@@ -1,6 +1,8 @@
 .row
   .col-md-6
     .new-comment.box
-      = simple_form_for [@post, comment] do |f|
+      = simple_form_for comment do |f|
+        -# = f.input :commentable_type, input_html: { value: comment_on_type }, as: :hidden
+        -# = f.input :commentable_id, input_html: { value: comment_on_id }, as: :hidden
         = f.input :body, label: t('globals.comment')
         = f.button :submit, class: "btn-success"

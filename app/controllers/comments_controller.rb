@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
-  before_filter :find_comment, only: [:show, :upvote, :downvote]
+  before_filter :find_comment, only: [:show, :upvote, :downvote, :destroy]
   before_filter :auth, only: [:upvote, :downvote]
 
   def new
     @new_comment = Comment.new
     @post = Comment.find(params[:comment_id])
+    @url = [@post, comment]
   end
 
   def create
@@ -15,7 +16,16 @@ class CommentsController < ApplicationController
     if params[:comment_id].present?
       new_comment.move_to_child_of(@comment_on)
     end
-    redirect_to @post
+    redirect_to [@post.subtidder, @post]
+  end
+
+  def destroy
+    if @comment.can_delete?(current_user)
+      render partial: 'empty', change: "comments:#{@comment.id}"
+      @comment.destroy
+    else
+      head :not_found
+    end
   end
 
   def upvote
@@ -31,8 +41,7 @@ class CommentsController < ApplicationController
   private
 
   def find_comment
-    id = params[:id]
-    @comment = Comment.find(id)
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params

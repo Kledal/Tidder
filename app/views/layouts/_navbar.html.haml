@@ -14,6 +14,11 @@
           = link_to root_path do
             = fa_icon 'fire', text: t('.frontpage')
             %span.sr-only Current
+        - cache do
+          - @top_subtidders.each do |subtidder|
+            %li{ class: current_page?( subtidder_path(subtidder) ) && 'active' }
+              = link_to subtidder.name, subtidder
+              %span.sr-only
 
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?

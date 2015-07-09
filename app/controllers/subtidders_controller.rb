@@ -2,7 +2,7 @@ class SubtiddersController < ApplicationController
   before_action :find_subtidder, only: :show
 
   def show
-
+    @posts = @subtidder.posts
   end
 
   private

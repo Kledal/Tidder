@@ -3,15 +3,15 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :subtidders
-
-  resources :posts do
-    resources :comments
-    put 'upvote', on: :member
-    put 'downvote', on: :member
+  resources :subtidders do
+    resources :posts do
+      resources :comments
+      put 'upvote', on: :member
+      put 'downvote', on: :member
+    end
   end
 
-  resources :comments, only: [:show, :destroy] do
+  resources :comments do
     put 'upvote', on: :member
     put 'downvote', on: :member
     resources :comments
